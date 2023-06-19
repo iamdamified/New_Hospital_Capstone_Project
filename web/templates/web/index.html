@@ -83,12 +83,12 @@
                         <a href="{% url 'home' %}" class="nav-item nav-link active">Home</a>
                         <a href="{% url 'doctors' %}" class="nav-item nav-link">Doctors</a>
                         <a href="{% url 'departments' %}" class="nav-item nav-link">Services</a>
-                        <a href="" class="nav-item nav-link">Patients</a>
+                        <a href="{% url 'patients' %}" class="nav-item nav-link">Patients</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Member</a>
                             <div class="dropdown-menu m-0">
-                                <a href="" class="dropdown-item">Register</a>
-                                <a href="" class="dropdown-item">Patients</a>
+                                <a href="{% url 'register' %}" class="dropdown-item">Register</a>
+                                <a href="{% url 'patients' %}" class="dropdown-item">Patients</a>
                                 <a href="" class="dropdown-item">Testimonial</a>
                                 <a href="" class="dropdown-item">Appointment</a>
                                 <a href="" class="dropdown-item">Sign in</a>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+            <!-- Patients Start -->
+            <div class="container-fluid py-5">
+                <div class="container">
+                    <div class="text-center mx-auto mb-5" style="max-width: 500px;">
+                        <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">Our Patients</h5>
+                        <h1 class="display-4">Patients</h1>
+                    </div>
+                    <div class="owl-carousel team-carousel position-relative">
+                        
+                        <div class="team-item">
+                            <div class="row g-0 bg-light rounded overflow-hidden">
+                                <div class="col-12 col-sm-5 h-100">
+                                    <img class="img-fluid h-100" src="{{ user.image.url }}" style="object-fit: cover;">
+                                </div>
+                                <div class="col-12 col-sm-7 h-100 d-flex flex-column">
+                                    <div class="mt-auto p-4">
+                                        <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+                                        <h6 class="fw-normal fst-italic text-primary mb-4">{{ user.patient.age }} - {{ user.patient.get_gender }} - {{ user.patient.get_status }} </h6>
+                                        <p class="m-0">{{ user.patient.get_health_status }}</p>
+                                        <p class="m-0">{{ user.patient.get_sickness_type }}</p>
+                                        <p class="m-0">{{ user.patient.sickness_description }}</p>
+                                        <p class="m-0">{{ user.patient.height }}</p>
+                                        <p class="m-0">{{ user.patient.address }}</p>
+                                        <p class="m-0">{{ user.patient.job }}</p>
+                                        <p class="m-0">{{ user.patient.phone }}</p>
+                                        <p class="m-0">{{ user.email }}</p>
+                                        <p class="m-0">{{ user.patient.date_joined }}</p>
+                                        <p class="m-0">{{ user.patient.date_updated }}</p>
+
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+    
+                    </div>
+                </div>
+            </div>
+            <!-- Patients End -->
+</body>
+</html>

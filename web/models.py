@@ -81,7 +81,7 @@ STATUS_CHOICES = (
 
 # # INBUILT USER EXTENSION MODEL FOR COLLECTIMG NEW USERS
 class Patient(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE) # This line link registers a user
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE) # This line link registers a user
     job = models.CharField(max_length=20, blank=True)
     phone = models.BigIntegerField(null=True, blank=True)
     age = models.IntegerField(null=True, blank=True)

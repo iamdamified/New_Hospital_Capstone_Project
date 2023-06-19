@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Newsletter, Department, Doctor, Patient #Appointment
+from .models import Newsletter, Department, Doctor, User, Patient #Appointment
 from django.http import HttpResponse
 from .forms import UserForm, PatientForm
 
@@ -60,11 +60,20 @@ def RegisterPage(request):
 
 
 def PatientsPage(request):
-    patients = Patient.objects.all()# just to make the querry more effective.
+    patients = User.objects.all()# just to make the querry more effective.
+
     context = {
         'patients': patients
     }
     return render(request, "web/patients.html", context)
+
+
+def DetailPatientPage(request, pk):
+    user = User.objects.get(pk=pk)
+    context = {
+        'user': user
+    }
+    return render(request, "web/detail.html", context)
 
 # def AppointmentPage(request):
 #     if request.method == "POST":
