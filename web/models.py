@@ -62,19 +62,19 @@ class Doctor(models.Model):
 
 
 HEALTH_CHOICES = (
-    ("S", "Sick"),
-    ("R", "Recovering"),
-    ("H", "Healthy")
+    ("Sick", "Sick"),
+    ("Recovering", "Recovering"),
+    ("Healthy", "Healthy")
 )
 
 GENDER_CHOICES = (
-    ("M", "Male"),
-    ("F", "Female")
+    ("Male", "Male"),
+    ("Female", "Female")
 )
 
 STATUS_CHOICES = (
-    ("M", "Married"),
-    ("S", "Single")
+    ("Married", "Married"),
+    ("Single", "Single")
 )
 
 
@@ -92,9 +92,14 @@ class Patient(models.Model):
     health_status = models.CharField(choices=HEALTH_CHOICES, max_length=15, blank=True)
     height = models.CharField(max_length=10, blank=True)
     image = models.ImageField(upload_to='patient_image', blank=True)
+    testimonials = models.TextField(blank=True)
     address = models.CharField(max_length=100, blank=True)
     date_joined = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
+
+    class Meta:
+
+        ordering = ["-date_joined"]
 
 
     def __str__(self):
@@ -111,17 +116,16 @@ def save_user_patient(sender, instance, **kwargs):
     instance.patient.save()
 
 
-# # connecting API
-# class Appointment(models.Model):
-#     name = models.CharField(max_length=100)
-#     phone = models.BigIntegerField()
-#     email = models.EmailField()
-#     department = models.ForeignKey(Department, on_delete=models.CASCADE)
-#     doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
-#     purpose = models.TextField()
-#     date_requested = models.DateField(auto_now_add=True)
+# connecting API
+class Appointment(models.Model):
+    full_name = models.CharField(max_length=100)
+    email = models.EmailField()
+    department = models.ForeignKey(Department, on_delete=models.CASCADE)
+    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
+    chosen_time = models.TimeField()
+    chosen_date = models.DateField()
     
 
 
-#     def __str__(self):
-#         return self.name
+    def __str__(self):
+        return self.full_name

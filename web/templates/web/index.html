@@ -90,12 +90,15 @@
                                 <a href="{% url 'register' %}" class="dropdown-item">Register</a>
                                 <a href="{% url 'patients' %}" class="dropdown-item">Patients</a>
                                 <a href="" class="dropdown-item">Testimonial</a>
-                                <a href="" class="dropdown-item">Appointment</a>
-                                <a href="" class="dropdown-item">Sign in</a>
+                                <a href="{% url 'appointments' %}" class="dropdown-item">Appointment</a>
+                                <a href="{% url 'login' %}" class="dropdown-item">Sign in</a>
                             </div>
                         </div>
                         <!-- i want to use here for member name and href to link to patient profile -->
-                        <a href="" class="nav-item nav-link">Contact</a>
+                        {% if user.username %}
+                        <a href="{% url 'detail' user.pk %}" class="nav-item nav-link">Hi {{ user.username }}</a>
+                        <a href="{% url 'logout' %}" class="nav-item nav-link">Logout</a>
+                        {% endif %}
                     </div>
                 </div>
             </nav>
@@ -259,9 +262,9 @@
                                     <i class="fa fa-quote-left fa-2x text-primary"></i>
                                 </div>
                             </div>
-                            <p class="fs-4 fw-normal">{{ i.testimonial }}.</p>
+                            <p class="fs-4 fw-normal">{{ i.testimonials }}.</p>
                             <hr class="w-25 mx-auto">
-                            <h3>{{ i.name }}</h3>
+                            <h3>{{ i.user.first_name }} {{ i.user.last_name }}</h3>
                             <h6 class="fw-normal text-primary mb-3">{{ i.job }}</h6>
                         </div>
                         {% endfor %}

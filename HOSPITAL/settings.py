@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
+from decouple import config
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,8 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-focrs$c_+8!viv=ea=iub8p6lwbj2%c_+9x6ji7r3g@vr5irns'
-
+SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -39,11 +39,31 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'web.apps.WebConfig',
     'crispy_forms',
-    'crispy_bootstrap4' 
+    'crispy_bootstrap4',
+    'api.apps.ApiConfig',
+    'rest_framework',
+    'djoser',
+    'rest_framework.authtoken',
+    'drf_spectacular' # documentation
 ]
 # I downloaded the apps below to make crispy work.
 # pip install django-crispy-forms
 # pip install crispy-bootstrap4
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema", # documentation
+}
+
+SPECTACULAR_SETTINGS = {
+"TITLE": "Hospital Capstone Project",
+"DESCRIPTION": "A comprehensive medical project",
+"VERSION": "1.0.0",
+# OTHER SETTINGS
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -79,13 +99,25 @@ WSGI_APPLICATION = 'HOSPITAL.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
+
+
+DATABASES = {     
+'default': {
+ 'ENGINE': 'django.db.backends.postgresql_psycopg2',
+ 'NAME': 'capstone1',
+ 'USER': 'postgres',
+ 'PASSWORD': config("DB_PASSWORD"),
+ 'HOST': 'localhost',
+ 'PORT': '5432'  
+} 
+} 
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -133,3 +165,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=45),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1)
+}
+

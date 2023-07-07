@@ -1,3 +1,6 @@
+{% extends "web/index.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,5 +10,36 @@
 </head>
 <body>
     
+    <!-- Login Start -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="row gx-5">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <div class="mb-4">
+                        <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">Login</h5>
+                        <h1 class="display-4">Login for your quality healthcare</h1>
+                    </div>
+                    <p class="mb-5">You will have access to your information and all our facilities and staff.</p>
+                    <a class="btn btn-outline-primary rounded-pill py-3 px-5" href="">Login</a>
+                </div>
+                <div class="col-lg-6">
+                    <div class="bg-light text-center rounded p-5">
+                        <h1 class="mb-4">Login</h1>
+                        <form method="post">
+                            {% csrf_token %}
+                            <input type="text" class="form-control p-3 border-0" name="username" placeholder="Your Username">
+                            <br>
+                            <input type="password" class="form-control p-3 border-0" name="password" placeholder="Enter Your Password">
+                            <br>
+                            <button class="btn btn-outline-primary rounded-pill py-3 px-5" type="submit">Login</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Login End -->
+
 </body>
 </html>
+{% endblock content %}

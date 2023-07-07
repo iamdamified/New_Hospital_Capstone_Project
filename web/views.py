@@ -1,9 +1,40 @@
-from django.shortcuts import render
-from .models import Newsletter, Department, Doctor, User, Patient #Appointment
+from django.shortcuts import render, redirect
+# from django.contrib import auth
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from .models import Newsletter, Department, Doctor, User, Patient, Appointment
 from django.http import HttpResponse
-from .forms import UserForm, PatientForm
+from .forms import UserForm, PatientForm, AppointmentForm
+
 
 # Create your views here.
+
+# def login_user(request):
+#     return render(request, "web/login.html")
+
+def web_login(request):
+    if request.method == "POST":
+        username = request.POST["username"]
+        password = request.POST["password"]
+
+        user = authenticate(username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect("home")
+        
+        else:
+            return redirect("login")
+    return render(request, "web/login.html")
+    
+
+def web_logout(request):
+    logout(request)
+    return redirect("home")
+
+
+
+
 
 def HomePage(request):
     if request.method == "POST":
@@ -12,14 +43,16 @@ def HomePage(request):
         return HttpResponse("You have subscribed sucessfully")
     else:
         doctors = Doctor.objects.all()
-        # patients = Patient.objects.all()
+        patients = Patient.objects.all()
         context = {
         'doctors': doctors,
-        # 'patients': patients
+        'patients': patients
     }
 
     
     return render(request, "web/index.html", context)
+
+
 
 def DepartmentsPage(request):
     departments = Department.objects.all()# request.POST("email") # OR request.POST.get["email"] OR request.POST.get("name")
@@ -27,6 +60,8 @@ def DepartmentsPage(request):
         'departments': departments
     }
     return render(request, "web/service.html", context)
+
+
 
 def DoctorsPage(request):
     doctors = Doctor.objects.all()# request.POST("email") # OR request.POST.get["email"] OR request.POST.get("name")
@@ -44,7 +79,6 @@ def RegisterPage(request):
             form.save()#save
             patient_form.save()#save
             return HttpResponse("You have been created successfully")
-    
 
     else: 
         form = UserForm()
@@ -59,8 +93,10 @@ def RegisterPage(request):
     return render(request, "web/register.html", context)
 
 
+
+
 def PatientsPage(request):
-    patients = User.objects.all()# just to make the querry more effective.
+    patients = Patient.objects.all()# just to make the querry more effective.
 
     context = {
         'patients': patients
@@ -75,12 +111,21 @@ def DetailPatientPage(request, pk):
     }
     return render(request, "web/detail.html", context)
 
-# def AppointmentPage(request):
-#     if request.method == "POST":
-#         new_email = request.POST.get("email")# request.POST("email") # OR request.POST.get["email"] OR request.POST.get("name")
-#         new_name = request.POST.get("name")
-#         Appointment.objects.create(email=new_email)
-#         return HttpResponse("You have subscribed sucessfully")#redirect will be best to a url which holds the Appointment API connected data
+
+
+def AppointmentPage(request):
+    if request.method == "POST":
+        form = AppointmentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponse("You have booked an appointment sucessfully")#redirect will be best to a url which holds the Appointment API connected data
+            
+    else:
+        form = AppointmentForm()
+
+    context = {
+        "form": form
+    }
     
-#     return render(request, "web/appointment.html")
+    return render(request, "web/appointment.html", context)
 
