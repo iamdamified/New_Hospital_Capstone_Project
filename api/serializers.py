@@ -11,7 +11,7 @@ class PatientSerializers(serializers.ModelSerializer):
     class Meta:
         model = Patient
         # fields = ["id", "name", "price", "description", "category", "image"]
-        fields = "__all__"
+        fields = ["user", "job", "phone", "age", "gender", "status", "height", "health_status", "address", "image"]
 
 
 class DoctorSerializers(serializers.ModelSerializer):

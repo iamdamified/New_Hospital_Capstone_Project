@@ -1,13 +1,16 @@
 from django.urls import path
-from .views import api_home_page, api_patient_page, api_patient_detail, api_doctor_page, api_department_page, api_appointment_page
+from .views import homenewsletter_page, homenewsletter_create_page, patient_complete_form, patient_complete_list, patient_detail, doctor_page, department_page, appointment_page, appointment_create_page, patient_basic_form, patient_basic_list 
 
 urlpatterns = [
-    path('newsletter/', api_home_page.as_view(), name='apihome'),
-    path("doctor/", api_doctor_page.as_view(), name="apidoctor"),
-    path("department/", api_department_page.as_view(), name="apidepartment"),
-    path("patient/", api_patient_page.as_view(), name="apipatient"),
-    # path("list_patient/", api_patient_list_page.as_view(), name="list_patient"),
-    # path("create_patient/", api_patient_create_page.as_view(), name="create_patient"),
-    path('<int:pk>/', api_patient_detail.as_view(), name='apidetail'),
-    path("appointment/", api_appointment_page.as_view(), name="apiappointment")
+    path('newsletter/', homenewsletter_page.as_view(), name='apinewsletter'),
+    path('create_newsletter/', homenewsletter_create_page.as_view(), name='apicreate_newsletter'),
+    path("doctor/", doctor_page.as_view(), name="apidoctor"),
+    path("department/", department_page.as_view(), name="apidepartment"),
+    path("create_basic_patient/", patient_basic_form.as_view(), name="apicreate_basic_patient"),
+    path("basic_patient/", patient_basic_list.as_view(), name="apibasic_patient/"),
+    path("patient/", patient_complete_form.as_view(), name="apipatient"),
+    path("create_patient/", patient_complete_list.as_view(), name="apicreate_patient"),
+    path('<int:pk>/', patient_detail.as_view(), name='apidetail'),
+    path("appointment/", appointment_page.as_view(), name="apiappointment"),
+    path("create_appointment/", appointment_create_page.as_view(), name="apiappointment")
 ]

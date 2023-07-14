@@ -18,7 +18,7 @@ class UserForm(UserCreationForm):
 class PatientForm(forms.ModelForm):
     class Meta:
         model = Patient
-        fields = ["job", "phone", "age", "gender", "status", "height", "health_status", "address", "image"]
+        fields = ["user", "job", "phone", "age", "gender", "status", "height", "health_status", "address", "image"]
 
 
 

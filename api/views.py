@@ -14,27 +14,27 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 #generic class based views
 
 
+#Patient Basic Registration and List 
+class patient_basic_form(CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializers
+
+class patient_basic_list(ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializers
+    pagination_class = PageNumberPagination
+    filter_backends = [SearchFilter]
+    search_fields = ["username"]
+    permission_classes =[IsAuthenticated]
 
 
-# class api_patient_list_page(ListAPIView):
-#     queryset = Patient.objects.all()
-#     serializer_class = PatientSerializers
-#     pagination_class = PageNumberPagination
-#     filter_backends = [SearchFilter]
-#     search_fields = ["age", "status", "gender", "username", "job", "health_status"]
-#     permission_classes =[IsAuthenticated]
+# Patient Complete Registration, Fully Registered and Individual Detail
+class patient_complete_form(CreateAPIView):
+    queryset = Patient.objects.all()
+    serializer_class = PatientSerializers
 
 
-# class api_patient_create_page(CreateAPIView):
-#     queryset = Patient.objects.all()
-#     serializer_class = PatientSerializers
-#     pagination_class = PageNumberPagination
-#     filter_backends = [SearchFilter]
-#     search_fields = ["age", "status", "gender", "username", "job", "health_status"]
-#     permission_classes =[IsAuthenticated]
-
-
-class api_patient_page(ListCreateAPIView):
+class patient_complete_list(ListAPIView):
     queryset = Patient.objects.all()
     serializer_class = PatientSerializers
     pagination_class = PageNumberPagination
@@ -43,38 +43,53 @@ class api_patient_page(ListCreateAPIView):
     permission_classes =[IsAuthenticated]
 
 
-class api_patient_detail(RetrieveUpdateDestroyAPIView):
+class patient_detail(RetrieveUpdateDestroyAPIView):
     queryset = Patient.objects.all()
     serializer_class = PatientSerializers
     lookup_field = "pk"
     permission_classes =[IsAuthenticated]
 
 
-
-class api_home_page(ListCreateAPIView):
+#Home Newsletters
+class homenewsletter_page(ListAPIView):
     queryset = Newsletter.objects.all()
     serializer_class = NewsletterSerializers
+    pagination_class = PageNumberPagination
+    filter_backends = [SearchFilter]
+    search_fields = ["email"]
+    permission_classes =[IsAuthenticated]
+
+
+class homenewsletter_create_page(CreateAPIView):
+    queryset = Newsletter.objects.all()
+    serializer_class = NewsletterSerializers
+
     
 
-
-class api_department_page(ListCreateAPIView):
+#Departments
+class department_page(ListCreateAPIView):
     queryset = Department.objects.all()
     serializer_class = DepartmentSerializers
         
-
-class api_doctor_page(ListCreateAPIView):
+#DOctors
+class doctor_page(ListCreateAPIView):
     queryset = Doctor.objects.all()
     serializer_class = DoctorSerializers
 
 
-# to be connected to API
-class api_appointment_page(ListCreateAPIView):
+#Appointments to be connected to API
+class appointment_create_page(CreateAPIView):
+    queryset = Appointment.objects.all()
+    serializer_class = AppointmentSerializers
+    
+
+class appointment_page(ListAPIView):
     queryset = Appointment.objects.all()
     serializer_class = AppointmentSerializers
     pagination_class = PageNumberPagination
     filter_backends = [SearchFilter]
     search_fields = ["full_name", "email"]
-    
+    permission_classes =[IsAuthenticated]
 
 
 

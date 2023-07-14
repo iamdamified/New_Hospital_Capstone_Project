@@ -73,24 +73,43 @@ def DoctorsPage(request):
 
 def RegisterPage(request):
     if  request.method == "POST": #CVS
-        form = UserForm(request.POST, instance=request.user)#collect
-        patient_form = PatientForm(request.POST, instance=request.user.patient)#collect
-        if form.is_valid() and patient_form.is_valid():#validate
+        form = UserForm(request.POST)#collect
+        if form.is_valid():#validate
             form.save()#save
-            patient_form.save()#save
-            return HttpResponse("You have been created successfully")
+            return redirect("patient_register")
+        else: 
+            form = UserForm()
 
     else: 
         form = UserForm()
-        patient_form = PatientForm()
 
     context = {
-        "form": form,
-        "patient_form": patient_form
+        "form": form
     }
 
 
     return render(request, "web/register.html", context)
+
+
+
+def PatientRegisterPage(request):
+    if  request.method == "POST": #CVS
+        patient_form = PatientForm(request.POST, instance=request.user.patient)#collect
+        if patient_form.is_valid():#validate
+            patient_form.save()#save
+            return redirect("login")
+        else:
+            patient_form = PatientForm()
+
+    else: 
+        patient_form = PatientForm()
+
+    context = {
+        "patient_form": patient_form
+    }
+
+
+    return render(request, "web/patient_register.html", context)
 
 
 
