@@ -18,6 +18,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 class patient_basic_form(CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializers
+    permission_classes =[AllowAny]
 
 class patient_basic_list(ListAPIView):
     queryset = User.objects.all()
@@ -32,6 +33,7 @@ class patient_basic_list(ListAPIView):
 class patient_complete_form(CreateAPIView):
     queryset = Patient.objects.all()
     serializer_class = PatientSerializers
+    permission_classes =[IsAuthenticated]
 
 
 class patient_complete_list(ListAPIView):
@@ -63,6 +65,7 @@ class homenewsletter_page(ListAPIView):
 class homenewsletter_create_page(CreateAPIView):
     queryset = Newsletter.objects.all()
     serializer_class = NewsletterSerializers
+    permission_classes =[AllowAny]
 
     
 
@@ -70,17 +73,21 @@ class homenewsletter_create_page(CreateAPIView):
 class department_page(ListCreateAPIView):
     queryset = Department.objects.all()
     serializer_class = DepartmentSerializers
+    permission_classes =[AllowAny]
+    
         
 #DOctors
 class doctor_page(ListCreateAPIView):
     queryset = Doctor.objects.all()
     serializer_class = DoctorSerializers
+    permission_classes =[AllowAny]
 
 
 #Appointments to be connected to API
 class appointment_create_page(CreateAPIView):
     queryset = Appointment.objects.all()
     serializer_class = AppointmentSerializers
+    permission_classes =[AllowAny]
     
 
 class appointment_page(ListAPIView):
