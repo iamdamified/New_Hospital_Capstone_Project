@@ -28,8 +28,8 @@ urlpatterns = [
     # path('logins/', include('django.contrib.auth.urls')),
     path('auth/', include('djoser.urls')),# endpoints from here handles path to Djoser that makes testing API in DRF easier
     path('auth/', include('djoser.urls.jwt')), #Djoser JWT specific Authentication Testing paths
-    path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'), #JWT only specific Authentication Generating paths and POSTMAN
-    path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'), #JWT only specific Authentication Testing paths and POSTMAN
+    path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'), #JWT only specific Authentication Generating paths - POSTMAN
+    path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'), #JWT only specific Authentication Testing paths - POSTMAN
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),# from this path down is for Swagger documantation download
     path("api/schema/redoc/", SpectacularRedocView.as_view(url_name="schema"), name="redoc",),# Not tried yet
     path("api/schema/swagger-ui/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui"), #View and Edit# new

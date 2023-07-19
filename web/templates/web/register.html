@@ -29,7 +29,6 @@
                         <form method="post">
                             {% csrf_token %}
                             {{ form|crispy }}
-                            {{ patient_form|crispy }}
                             <button type="submit">Submit</button>
                         </form>
                     </div>

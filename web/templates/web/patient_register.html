@@ -28,7 +28,6 @@
                         <h1 class="mb-4">Become A Member</h1>
                         <form method="post">
                             {% csrf_token %}
-                            {{ form|crispy }}
                             {{ patient_form|crispy }}
                             <button type="submit">Submit</button>
                         </form>

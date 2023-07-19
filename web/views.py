@@ -76,6 +76,13 @@ def RegisterPage(request):
         form = UserForm(request.POST)#collect
         if form.is_valid():#validate
             form.save()#save
+            username = form.cleaned_data["username"]
+            password = form.cleaned_data["password1"]
+
+            user = authenticate(username=username, password=password)
+
+            if user is not None:
+                login(request, user)
             return redirect("patient_register")
         else: 
             form = UserForm()
@@ -97,7 +104,7 @@ def PatientRegisterPage(request):
         patient_form = PatientForm(request.POST, instance=request.user.patient)#collect
         if patient_form.is_valid():#validate
             patient_form.save()#save
-            return redirect("login")
+            return redirect("home")
         else:
             patient_form = PatientForm()
 
@@ -130,6 +137,13 @@ def DetailPatientPage(request, pk):
     }
     return render(request, "web/detail.html", context)
 
+
+# def update_user(request):
+# 	if request.user.is.authenticated:
+# 	    return render(request, "update_patient.html")
+# 	else:
+# 		messages.success(request, ("You must be logged in to have access")
+# 		return redirect("home")
 
 
 def AppointmentPage(request):

@@ -91,7 +91,7 @@ class Patient(models.Model):
     sickness_description = models.TextField(blank=True)
     health_status = models.CharField(choices=HEALTH_CHOICES, max_length=15, blank=True)
     height = models.CharField(max_length=10, blank=True)
-    image = models.ImageField(upload_to='patient_image', blank=True)
+    image = models.ImageField(upload_to='patient_image', default='default2.jpg')
     testimonials = models.TextField(blank=True)
     address = models.CharField(max_length=100, blank=True)
     date_joined = models.DateTimeField(auto_now_add=True)

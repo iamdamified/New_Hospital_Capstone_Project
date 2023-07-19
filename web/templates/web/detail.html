@@ -15,36 +15,43 @@
                         <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">Our Patients</h5>
                         <h1 class="display-4">Patient</h1>
                     </div>
-                    <div class="owl-carousel team-carousel position-relative"> 
+
                         <!-- The above div line may be removed -->
                         
-                        <div class="team-item">
-                            <div class="row g-0 bg-light rounded overflow-hidden">
-                                <div class="col-12 col-sm-5 h-100">
-                                    <img class="img-fluid h-100" src="{{ patient.image.url }}" style="object-fit: cover;">
-                                </div>
-                                <div class="col-12 col-sm-7 h-100 d-flex flex-column">
-                                    <div class="mt-auto p-4">
-                                        <h3>{{ user.first_name }} {{ user.last_name }}</h3>
-                                        <h6 class="fw-normal fst-italic text-primary mb-4">{{ user.patient.age }} - {{ user.patient.gender }} - {{ user.patient.status }} </h6>
-                                        <p class="m-0">{{ user.patient.health_status }}</p>
-                                        <p class="m-0">{{ user.patient.sickness_type }}</p>
-                                        <p class="m-0">{{ user.patient.sickness_description }}</p>
-                                        <p class="m-0">{{ user.patient.height }}</p>
-                                        <p class="m-0">{{ user.patient.address }}</p>
-                                        <p class="m-0">{{ user.patient.job }}</p>
-                                        <p class="m-0">{{ user.patient.phone }}</p>
-                                        <p class="m-0">{{ user.email }}</p>
-                                        <p class="m-0">{{ user.patient.date_joined }}</p>
-                                        <p class="m-0">{{ user.patient.date_updated }}</p>
-
-                                    </div>
-                                    
-                                </div>
+                    <div class="team-item">
+                        <div class="row g-0 bg-light rounded overflow-hidden">
+                            <div class="col-12 col-sm-5 h-100">
+                                <img class="img-fluid h-100" src="{{ user.patient.image.url }}" style="object-fit: cover;">
                             </div>
+                            <div class="col-12 col-sm-7 h-100 d-flex flex-column">
+                                <div class="mt-auto p-4">
+                                    <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+                                    <h6 class="fw-normal fst-italic text-primary mb-4">{{ user.patient.age }} - {{ user.patient.gender }} - {{ user.patient.status }} </h6>
+                                    <p class="m-0">{{ user.patient.health_status }}</p>
+                                    <p class="m-0">{{ user.patient.sickness_type }}</p>
+                                    <p class="m-0">{{ user.patient.sickness_description }}</p>
+                                    <p class="m-0">{{ user.patient.height }}</p>
+                                    <p class="m-0">{{ user.patient.address }}</p>
+                                    <p class="m-0">{{ user.patient.job }}</p>
+                                    <p class="m-0">{{ user.patient.phone }}</p>
+                                    <p class="m-0">{{ user.email }}</p>
+                                    <p class="m-0">{{ user.patient.date_joined }}</p>
+                                    <p class="m-0">{{ user.patient.date_updated }}</p>
+
+                                </div>
+                                
+                            </div>
+                            
+                            
+                            
+                           
                         </div>
-    
                     </div>
+
+                    <div class="text-center mx-auto mb-5" style="max-width: 500px;">
+                        <a href="{% url 'departments' %}" class="d-inline-block text-primary text-uppercase border-bottom border-5">Update Profile</a>
+                    </div>
+
                 </div>
             </div>
             <!-- Patients End -->

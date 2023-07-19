@@ -87,7 +87,15 @@
                         {% if user.username %}
                         <a href="{% url 'patients' %}" class="nav-item nav-link">Patients</a>
                         {% endif %}
-
+                        {% if user.username %}
+                        
+                        {% endif %}
+                        
+                        <!-- i want to use here for member name and href to link to patient profile -->
+                        {% if user.username  %}
+                        <a href="{% url 'detail' user.pk %}" class="nav-item nav-link">Hi {{ user.username }}</a>
+                        <a href="{% url 'logout' %}" class="nav-item nav-link">Logout</a>
+                        {% else %}
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Member</a>
                             <div class="dropdown-menu m-0">
@@ -97,11 +105,6 @@
                                 
                             </div>
                         </div>
-                        
-                        <!-- i want to use here for member name and href to link to patient profile -->
-                        {% if user.username %}
-                        <a href="{% url 'detail' user.pk %}" class="nav-item nav-link">Hi {{ user.username }}</a>
-                        <a href="{% url 'logout' %}" class="nav-item nav-link">Logout</a>
                         {% endif %}
                     </div>
                 </div>
@@ -119,8 +122,8 @@
                     <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5" style="border-color: rgba(256, 256, 256, .3) !important;">Welcome To Emmanuel</h5>
                     <h1 class="display-1 text-white mb-md-4">Best Healthcare Solution In Your City</h1>
                     <div class="pt-2">
-                        <a href="" class="btn btn-light rounded-pill py-md-3 px-md-5 mx-2">Find Doctor</a>
-                        <a href="" class="btn btn-outline-light rounded-pill py-md-3 px-md-5 mx-2">Appointment</a>
+                        <a href="{% url 'doctors' %}" class="btn btn-light rounded-pill py-md-3 px-md-5 mx-2">Find Doctor</a>
+                        <a href="{% url 'appointments' %}" class="btn btn-outline-light rounded-pill py-md-3 px-md-5 mx-2">Appointment</a>
                     </div>
                 </div>
             </div>
@@ -261,7 +264,7 @@
                         {% for i in patients %}
                         <div class="testimonial-item text-center">
                             <div class="position-relative mb-5">
-                                <img class="img-fluid rounded-circle mx-auto" src="{{ i.patients.image.url }}" alt="">
+                                <img class="img-fluid rounded-circle mx-auto" src="{{ i.image.url }}" alt="">
                                 <div class="position-absolute top-100 start-50 translate-middle d-flex align-items-center justify-content-center bg-white rounded-circle" style="width: 60px; height: 60px;">
                                     <i class="fa fa-quote-left fa-2x text-primary"></i>
                                 </div>

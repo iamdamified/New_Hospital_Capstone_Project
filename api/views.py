@@ -33,7 +33,7 @@ class patient_basic_list(ListAPIView):
 class patient_complete_form(CreateAPIView):
     queryset = Patient.objects.all()
     serializer_class = PatientSerializers
-    permission_classes =[IsAuthenticated]
+    permission_classes =[AllowAny]
 
 
 class patient_complete_list(ListAPIView):
