@@ -10,8 +10,8 @@ class UserSerializers(serializers.ModelSerializer):
 class PatientSerializers(serializers.ModelSerializer):
     class Meta:
         model = Patient
-        # fields = ["id", "name", "price", "description", "category", "image"]
-        fields = ["user", "job", "phone", "age", "gender", "status", "height", "health_status", "address", "image"]
+        
+        fields = ["id", "user", "job", "phone", "age", "gender", "status", "height", "health_status", "address", "image", "testimonials"]
 
 
 class DoctorSerializers(serializers.ModelSerializer):
@@ -34,6 +34,6 @@ class AppointmentSerializers(serializers.ModelSerializer):
 class NewsletterSerializers(serializers.ModelSerializer):
     class Meta:
         model = Newsletter
-        fields = "__all__"
+        fields = ["email"]
 
 
