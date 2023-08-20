@@ -10,7 +10,7 @@ from .forms import UserForm, PatientForm, AppointmentForm
 # Create your views here.
 
 # def login_user(request):
-#     return render(request, "web/login.html")
+#     return render(request, "web/login.html") for git update purpose
 
 def web_login(request):
     if request.method == "POST":
